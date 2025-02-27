@@ -189,37 +189,30 @@ window.addEventListener('load', function () {
         isOriginalSky = !isOriginalSky;
     }
 
-    function checkWinCondition() {
-        if (!steelballEntity || !platformEntity) return;
+   function checkWinCondition() {
+    if (!steelballEntity || !platformEntity) return;
 
-        if (!steelballEntity.getAttribute('visible') || !platformEntity.getAttribute('visible')) return;
+    if (!steelballEntity.getAttribute('visible') || !platformEntity.getAttribute('visible')) return;
 
-        const ballPosition = steelballEntity.getAttribute('position');
-        const platformPosition = platformEntity.getAttribute('position');
+    const ballPosition = steelballEntity.getAttribute('position');
+    const platformPosition = platformEntity.getAttribute('position');
 
-        const distance = Math.sqrt(
-            Math.pow(ballPosition.x - platformPosition.x, 2) +
-            Math.pow(ballPosition.z - platformPosition.z, 2)
-        );
-        
-        const ballHeight = ballPosition.y;
-        const platformHeight = platformPosition.y + 0.1;
+    const distance = Math.sqrt(
+        Math.pow(ballPosition.x - platformPosition.x, 2) +
+        Math.pow(ballPosition.z - platformPosition.z, 2)
+    );
+    
+    const ballHeight = ballPosition.y;
+    const platformHeight = platformPosition.y + 0.1;
 
-        if (distance < 1.5 && Math.abs(ballHeight - platformHeight) < 0.5) {
-            setTimeout(() => {
-                alert('You win! The ball is on the platform!');
-                resetGame();
-            }, 100);
-        }
+    // Adjusted conditions for touching
+    if (distance < 0.5 && Math.abs(ballHeight - platformHeight) < 0.1) {
+        setTimeout(() => {
+            alert('You win! The ball is on the platform!');
+            resetGame();
+        }, 100);
     }
-
-    setInterval(checkWinCondition, 100);
-
-    window.addEventListener('keydown', function (event) {
-        if (event.code === 'KeyE') {
-            changeEnvironment();
-            checkWinCondition();
-        }
+}
         if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.code)) {
             event.preventDefault();
         }
