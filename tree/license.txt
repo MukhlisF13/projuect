@@ -1,0 +1,11 @@
+Model Information:
+* title:	Maple Trees
+* source:	https://sketchfab.com/3d-models/maple-trees-9f51e08e56cd4e44b35fd02a3ad8d3a6
+* author:	Jagobo (https://sketchfab.com/Jagobo)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Maple Trees" (https://sketchfab.com/3d-models/maple-trees-9f51e08e56cd4e44b35fd02a3ad8d3a6) by Jagobo (https://sketchfab.com/Jagobo) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
