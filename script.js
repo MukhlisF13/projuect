@@ -167,7 +167,11 @@ window.addEventListener('load', function () {
     }
 
     function resetBallPosition() {
-        steelballEntity.setAttribute('position', `${originalPosition.x} ${originalPosition.y} ${originalPosition.z}`);
+        // Check if the steel ball collides with a tree or rock, then reset position
+        const newPos = getRandomPosition();
+        if (isPositionValid(newPos, environmentEntities, 5)) {
+            steelballEntity.setAttribute('position', `${newPos.x} ${originalPosition.y} ${newPos.z}`);
+        }
     }
 
     function changeEnvironment() {
@@ -211,7 +215,6 @@ window.addEventListener('load', function () {
         const ballHeight = ballPosition.y;
         const platformHeight = platformPosition.y + 0.1;
 
-        // Adjusted conditions for touching
         if (distance < 0.5 && Math.abs(ballHeight - platformHeight) < 0.1) {
             setTimeout(() => {
                 alert('You win! The ball is on the platform!');
