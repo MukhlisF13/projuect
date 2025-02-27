@@ -113,6 +113,12 @@ window.addEventListener('load', function () {
         const moveSpeed = 0.8;
         
         window.addEventListener('keydown', (e) => {
+            // Prevent default behavior for arrow keys only
+            if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.code)) {
+                e.preventDefault();
+                return;
+            }
+
             if (!steelballEntity.getAttribute('visible')) return;
             
             const position = steelballEntity.getAttribute('position');
