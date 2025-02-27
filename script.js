@@ -138,7 +138,7 @@ window.addEventListener('load', function () {
         scene.appendChild(steelballEntity);
 
         steelballEntity.addEventListener('collide', (e) => {
-            if (e.detail.body.el.id.includes('tree') || e.detail.body.el.id.includes('rock')) {
+            if (e.detail.body.el.classList.contains('tree') || e.detail.body.el.classList.contains('rock')) {
                 resetBallPosition();
             }
         });
