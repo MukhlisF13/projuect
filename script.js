@@ -135,6 +135,12 @@ window.addEventListener('load', function () {
         });
         steelballEntity.setAttribute('visible', 'true');
         scene.appendChild(steelballEntity);
+
+        steelballEntity.addEventListener('collide', (e) => {
+            if (e.detail.body.el.id === 'tree' || e.detail.body.el.id === 'rock') {
+                resetBallPosition();
+            }
+        });
     }
 
     let steelballPosition, platformPosition;
@@ -194,22 +200,6 @@ window.addEventListener('load', function () {
         isOriginalSky = !isOriginalSky;
     }
 
-    function checkCollision() {
-        const ballPosition = steelballEntity.getAttribute('position');
-        for (const entity of environmentEntities) {
-            const entityPos = entity.getAttribute('position');
-            const distance = Math.sqrt(
-                Math.pow(ballPosition.x - entityPos.x, 2) + 
-                Math.pow(ballPosition.z - entityPos.z, 2)
-            );
-            
-            if (distance < 1) {
-                resetBallPosition();
-                break;
-            }
-        }
-    }
-
     function checkWinCondition() {
         if (!steelballEntity || !platformEntity) return;
 
@@ -236,7 +226,6 @@ window.addEventListener('load', function () {
     }
 
     setInterval(() => {
-        checkCollision();
         checkWinCondition();
     }, 100);
 
