@@ -136,12 +136,6 @@ window.addEventListener('load', function () {
         });
         steelballEntity.setAttribute('visible', 'true');
         scene.appendChild(steelballEntity);
-
-        steelballEntity.addEventListener('collide', (e) => {
-            if (e.detail.body.el.classList.contains('tree') || e.detail.body.el.classList.contains('rock')) {
-                resetBallPosition();
-            }
-        });
     }
 
     let steelballPosition, platformPosition;
@@ -237,6 +231,7 @@ window.addEventListener('load', function () {
         }
     });
 
+    // Create initial entities
     createInitialEntities();
     createEnvironment();
 });
