@@ -10,6 +10,7 @@ window.addEventListener('load', function () {
     let environmentEntities = [];
     let ePressCount = 0;
     const maxEPresses = 3;
+    let originalPosition = { x: 0, y: 0.5, z: 0 };
 
     function createEnvironmentEntity(model, scale, position) {
         return new Promise((resolve) => {
@@ -108,7 +109,7 @@ window.addEventListener('load', function () {
 
         steelballEntity = document.createElement('a-entity');
         steelballEntity.setAttribute('gltf-model', '#steelball');
-        steelballEntity.setAttribute('position', '0 0.5 0');
+        steelballEntity.setAttribute('position', `${originalPosition.x} ${originalPosition.y} ${originalPosition.z}`);
         steelballEntity.setAttribute('dynamic-body', 'mass: 5; shape: sphere; radius: 0.8; linearDamping: 0.5; angularDamping: 0.5;');
         const moveSpeed = 0.8;
         
@@ -164,6 +165,10 @@ window.addEventListener('load', function () {
         isOriginalSky = true;
     }
 
+    function resetBallPosition() {
+        steelballEntity.setAttribute('position', `${originalPosition.x} ${originalPosition.y} ${originalPosition.z}`);
+    }
+
     function changeEnvironment() {
         ePressCount++;
 
@@ -187,6 +192,22 @@ window.addEventListener('load', function () {
             sky.setAttribute('src', isOriginalSky ? alternateSky : originalSky);
         }
         isOriginalSky = !isOriginalSky;
+    }
+
+    function checkCollision() {
+        const ballPosition = steelballEntity.getAttribute('position');
+        for (const entity of environmentEntities) {
+            const entityPos = entity.getAttribute('position');
+            const distance = Math.sqrt(
+                Math.pow(ballPosition.x - entityPos.x, 2) + 
+                Math.pow(ballPosition.z - entityPos.z, 2)
+            );
+            
+            if (distance < 1) {
+                resetBallPosition();
+                break;
+            }
+        }
     }
 
     function checkWinCondition() {
@@ -214,7 +235,10 @@ window.addEventListener('load', function () {
         }
     }
 
-    setInterval(checkWinCondition, 100);
+    setInterval(() => {
+        checkCollision();
+        checkWinCondition();
+    }, 100);
 
     window.addEventListener('keydown', function (event) {
         if (event.code === 'KeyE') {
