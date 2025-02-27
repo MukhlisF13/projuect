@@ -12,13 +12,14 @@ window.addEventListener('load', function () {
     const maxEPresses = 3;
     let originalPosition = { x: 0, y: 0.5, z: 0 };
 
-    function createEnvironmentEntity(model, scale, position) {
+    function createEnvironmentEntity(model, scale, position, id) {
         return new Promise((resolve) => {
             const entity = document.createElement('a-entity');
             entity.setAttribute('position', `${position.x} ${position.y} ${position.z}`);
             entity.setAttribute('gltf-model', model);
             entity.setAttribute('scale', scale);
             entity.setAttribute('rotation', `0 ${Math.random() * 360} 0`);
+            entity.setAttribute('id', id);
             entity.setAttribute('static-body', 'shape: box; fit: manual; halfExtents: 1.5 3 1.5;');
             scene.appendChild(entity);
             entity.addEventListener('loaded', () => resolve(entity));
@@ -38,10 +39,10 @@ window.addEventListener('load', function () {
         const entityPromises = [];
 
         for (let i = 0; i < numTrees; i++) {
-            entityPromises.push(createEnvironmentEntity('#tree', '0.8 0.8 0.8', getRandomPosition()));
+            entityPromises.push(createEnvironmentEntity('#tree', '0.8 0.8 0.8', getRandomPosition(), 'tree' + i));
         }
         for (let i = 0; i < numRocks; i++) {
-            entityPromises.push(createEnvironmentEntity('#rock', '0.1 0.1 0.1', getRandomPosition()));
+            entityPromises.push(createEnvironmentEntity('#rock', '0.1 0.1 0.1', getRandomPosition(), 'rock' + i));
         }
 
         environmentEntities = await Promise.all(entityPromises);
@@ -137,7 +138,7 @@ window.addEventListener('load', function () {
         scene.appendChild(steelballEntity);
 
         steelballEntity.addEventListener('collide', (e) => {
-            if (e.detail.body.el.id === 'tree' || e.detail.body.el.id === 'rock') {
+            if (e.detail.body.el.id.includes('tree') || e.detail.body.el.id.includes('rock')) {
                 resetBallPosition();
             }
         });
