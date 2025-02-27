@@ -47,7 +47,6 @@ window.addEventListener('load', function () {
         positionEntities();
     }
 
-    // Function to get the spawn position behind a random tree or rock
     function isPositionValid(position, entities, minDistance, otherPosition = null) {
         for (const entity of entities) {
             const entityPos = entity.getAttribute('position');
@@ -58,13 +57,12 @@ window.addEventListener('load', function () {
             if (distance < minDistance) return false;
         }
         
-        // Check distance from other spawn point if provided
         if (otherPosition) {
             const distanceToOther = Math.sqrt(
                 Math.pow(position.x - otherPosition.x, 2) + 
                 Math.pow(position.z - otherPosition.z, 2)
             );
-            if (distanceToOther < 20) return false; // Minimum distance between ball and platform
+            if (distanceToOther < 20) return false;
         }
         return true;
     }
@@ -72,11 +70,10 @@ window.addEventListener('load', function () {
     function getSpawnPositionBehindEntity(entity, offset, otherPosition = null) {
         const entityPos = entity.getAttribute('position');
         const rotation = Math.random() * Math.PI * 2;
-        
-        // Try different positions around the entity
+
         for (let attempt = 0; attempt < 16; attempt++) {
             const angle = rotation + (attempt * Math.PI / 8);
-            const distance = offset + (Math.random() * 2); // Randomize distance a bit
+            const distance = offset + (Math.random() * 2);
             const position = {
                 x: entityPos.x + Math.cos(angle) * distance,
                 y: 1.0,
@@ -87,8 +84,7 @@ window.addEventListener('load', function () {
                 return position;
             }
         }
-        
-        // Fallback position if no valid spot found
+
         return {
             x: entityPos.x + offset + (Math.random() * 10),
             y: 1.0,
@@ -148,7 +144,6 @@ window.addEventListener('load', function () {
         const randomTree = environmentEntities[Math.floor(Math.random() * numTrees)];
         const randomRock = environmentEntities[numTrees + Math.floor(Math.random() * numRocks)];
 
-        // Spawn the platform and steelball behind random tree and rock, respectively, only once
         if (!steelballPosition && !platformPosition) {
             platformPosition = getSpawnPositionBehindEntity(randomTree, 4);
             platformEntity.setAttribute('position', `${platformPosition.x} ${platformPosition.y + 0.1} ${platformPosition.z}`);
@@ -162,7 +157,6 @@ window.addEventListener('load', function () {
         ePressCount = 0;
         scene.innerHTML = '';
         createEnvironment();
-
         const sky = document.createElement('a-sky');
         sky.setAttribute('src', originalSky);
         scene.appendChild(sky);
@@ -172,10 +166,8 @@ window.addEventListener('load', function () {
     function changeEnvironment() {
         ePressCount++;
 
-        // Only reposition entities after 3 presses
         if (ePressCount >= maxEPresses) {
             ePressCount = 0;
-            // Get new positions for ball and platform
             const randomTree = environmentEntities[Math.floor(Math.random() * numTrees)];
             const randomRock = environmentEntities[numTrees + Math.floor(Math.random() * numRocks)];
             
@@ -186,11 +178,9 @@ window.addEventListener('load', function () {
             steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y + 0.5} ${steelballPosition.z}`);
         }
 
-        // Toggle visibility
         platformEntity.setAttribute('visible', !platformEntity.getAttribute('visible'));
         steelballEntity.setAttribute('visible', !steelballEntity.getAttribute('visible'));
 
-        // Change sky
         const sky = document.querySelector('a-sky');
         if (sky) {
             sky.setAttribute('src', isOriginalSky ? alternateSky : originalSky);
@@ -201,7 +191,6 @@ window.addEventListener('load', function () {
     function checkWinCondition() {
         if (!steelballEntity || !platformEntity) return;
         
-        // Only check win condition when both ball and platform are visible
         if (!steelballEntity.getAttribute('visible') || !platformEntity.getAttribute('visible')) return;
 
         const ballPosition = steelballEntity.getAttribute('position');
@@ -223,20 +212,8 @@ window.addEventListener('load', function () {
         }
     }
 
-    // Check win condition on physics tick
     setInterval(checkWinCondition, 100);
 
     window.addEventListener('keydown', function (event) {
         if (event.code === 'KeyE') {
-            changeEnvironment();
-            checkWinCondition();
-        }
-        // Prevent arrow keys from moving the camera
-        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.code)) {
-            event.preventDefault();
-        }
-    });
 
-    createInitialEntities();
-    createEnvironment();
-});
