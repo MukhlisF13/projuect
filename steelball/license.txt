@@ -1,0 +1,11 @@
+Model Information:
+* title:	Gyro Zeppeli's Steel Ball - JJBA: Steel Ball Run
+* source:	https://sketchfab.com/3d-models/gyro-zeppelis-steel-ball-jjba-steel-ball-run-dfb1780502da492faa383d5126df495f
+* author:	Nekupaska (https://sketchfab.com/nekubaba213)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Gyro Zeppeli's Steel Ball - JJBA: Steel Ball Run" (https://sketchfab.com/3d-models/gyro-zeppelis-steel-ball-jjba-steel-ball-run-dfb1780502da492faa383d5126df495f) by Nekupaska (https://sketchfab.com/nekubaba213) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
