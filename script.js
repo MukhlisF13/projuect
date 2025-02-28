@@ -12,6 +12,23 @@ window.addEventListener('load', function () {
     const maxEPresses = 3;
     let originalPosition = { x: 0, y: 0.5, z: 0 };
 
+    function preloadModels() {
+        const assets = document.querySelector('a-assets');
+        const treeModel = document.createElement('a-asset-item');
+        treeModel.setAttribute('id', 'tree');
+        treeModel.setAttribute('src', 'path/to/tree.gltf');
+        const rockModel = document.createElement('a-asset-item');
+        rockModel.setAttribute('id', 'rock');
+        rockModel.setAttribute('src', 'path/to/rock.gltf');
+        const steelballModel = document.createElement('a-asset-item');
+        steelballModel.setAttribute('id', 'steelball');
+        steelballModel.setAttribute('src', 'path/to/steelball.gltf');
+        
+        assets.appendChild(treeModel);
+        assets.appendChild(rockModel);
+        assets.appendChild(steelballModel);
+    }
+
     function createEnvironmentEntity(model, scale, position, id) {
         return new Promise((resolve) => {
             const entity = document.createElement('a-entity');
@@ -234,6 +251,9 @@ window.addEventListener('load', function () {
         }
     });
 
+    // Preload models
+    preloadModels();
+    
     // Create initial entities
     createInitialEntities();
     createEnvironment();
