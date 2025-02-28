@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
     let environmentEntities = [];
     let ePressCount = 0;
     const maxEPresses = 3;
-    let originalPosition = { x: 0, y: 0.5, z: 0 };
+    let originalPosition = { x: 0, y: 0.1, z: 0 };
 
     function createEnvironmentEntity(model, scale, position, id) {
         return new Promise((resolve) => {
@@ -144,7 +144,7 @@ window.addEventListener('load', function () {
             platformEntity.setAttribute('position', `${platformPosition.x} ${platformPosition.y + 0.1} ${platformPosition.z}`);
 
             steelballPosition = getSpawnPositionBehindEntity(randomRock, 4, platformPosition);
-            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y + 0.5} ${steelballPosition.z}`);
+            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y + 0.1} ${steelballPosition.z}`);
         }
     }
 
@@ -175,7 +175,7 @@ window.addEventListener('load', function () {
             platformEntity.setAttribute('position', `${platformPosition.x} ${platformPosition.y + 0.1} ${platformPosition.z}`);
 
             steelballPosition = getSpawnPositionBehindEntity(randomRock, 4, platformPosition);
-            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y + 0.5} ${steelballPosition.z}`);
+            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y + 0.1} ${steelballPosition.z}`);
         }
 
         platformEntity.setAttribute('visible', !platformEntity.getAttribute('visible'));
