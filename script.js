@@ -6,7 +6,7 @@ window.addEventListener('load', function () {
     const originalSky = '#sky';
     const alternateSky = '#sky2';
 
-    let steelballEntity, platformEntity, winZoneEntity, warpEntity, confettiEntity;
+    let steelballEntity, platformEntity, winZoneEntity, warpEntity, confettiEntity, soundEntity;
     let environmentEntities = [];
     let ePressCount = 0;
     const maxEPresses = 3;
@@ -199,12 +199,18 @@ window.addEventListener('load', function () {
             sky.setAttribute('src', isOriginalSky ? alternateSky : originalSky);
         }
         isOriginalSky = !isOriginalSky;
+
+        // Play the sound
+        const sound = document.querySelector('#warpSound');
+        if (sound) {
+            sound.play();
+        }
     }
 
     function isTouching(entity1, entity2) {
         const pos1 = entity1.getAttribute('position');
         const pos2 = entity2.getAttribute('position');
-        const distance = Math.sqrt(Math.pow(pos1.x - pos2.x, 2) + Math.pow(pos1.z - pos2.z, 2));
+        const distance = Math.sqrt(Math.pow(pos1.x - pos2.x, 2) + Math.pow(pos2.z - pos2.z, 2));
         const heightDifference = Math.abs(pos1.y - pos2.y);
         return distance < 2 && heightDifference < 0.2; // Adjust based on the model's size
     }
