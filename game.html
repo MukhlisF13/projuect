@@ -21,6 +21,8 @@
       <a-asset-item id="tree" src="tree/tree.gltf"></a-asset-item>
       <a-asset-item id="rock" src="rock/rock.gltf"></a-asset-item>
       <a-asset-item id="confetti" src="confetti/scene.gltf"></a-asset-item>
+      <audio id="warpSound" src="warp-306033.mp3"></audio>
+      <audio id="winSound" src="level-win-6416.mp3"></audio>
       <img id="ground" src="floor.jpg"/>
       <img id="sky" src="sky.png"/>
       <img id="sky2" src="sky2.jpg"/>
@@ -39,6 +41,8 @@
         <a-cursor></a-cursor>
       </a-camera>
     </a-entity>
+    <!-- Confetti Entity -->
+    <a-entity id="confetti" gltf-model="#confetti" animation-mixer="loop: once" visible="false"></a-entity>
   </a-scene>
 </body>
 </html>
