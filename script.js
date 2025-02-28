@@ -212,11 +212,11 @@ window.addEventListener('load', function () {
     function checkWinCondition() {
         if (!steelballEntity || !platformEntity || !winZoneEntity) return;
 
-        if (!steelballEntity.getAttribute('visible') || !platformEntity.getAttribute('visible') || winZoneEntity.getAttribute('visible') === 'false') return;
+        if (!steelballEntity.getAttribute('visible') || platformEntity.getAttribute('visible') || !winZoneEntity.getAttribute('visible')) return;
 
         if (isTouching(steelballEntity, winZoneEntity)) {
             setTimeout(() => {
-                alert('You win! The ball is in the zone!');
+                alert('You win, congrats player!');
                 resetGame();
             }, 100);
         }
@@ -235,5 +235,4 @@ window.addEventListener('load', function () {
 
     createInitialEntities();
     createEnvironment();
-});
 });
