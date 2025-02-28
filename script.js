@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
     let environmentEntities = [];
     let ePressCount = 0;
     const maxEPresses = 3;
-    let originalPosition = { x: 0, y: 0.2, z: 0 }; // Adjusted height to 0.2
+    let originalPosition = { x: 0, y: 0.6, z: 0 }; // Adjusted height to 0.6
 
     function createEnvironmentEntity(model, scale, position, id) {
         return new Promise((resolve) => {
@@ -223,4 +223,5 @@ window.addEventListener('load', function () {
 
     createInitialEntities();
     createEnvironment();
+});
 });
