@@ -77,7 +77,7 @@ window.addEventListener('load', function () {
             const distance = offset + (Math.random() * 2);
             const position = {
                 x: entityPos.x + Math.cos(angle) * distance,
-                y: 0.1,
+                y: 0,
                 z: entityPos.z + Math.sin(angle) * distance
             };
             
@@ -88,7 +88,7 @@ window.addEventListener('load', function () {
         
         return {
             x: entityPos.x + offset + (Math.random() * 10),
-            y: 0.1,
+            y: 0,
             z: entityPos.z + offset + (Math.random() * 10)
         };
     }
