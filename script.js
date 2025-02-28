@@ -6,7 +6,7 @@ window.addEventListener('load', function () {
     const originalSky = '#sky';
     const alternateSky = '#sky2';
 
-    let steelballEntity, platformEntity, winZoneEntity, warpEntity, confettiEntity, soundEntity;
+    let steelballEntity, platformEntity, winZoneEntity, warpEntity, confettiEntity;
     let environmentEntities = [];
     let ePressCount = 0;
     const maxEPresses = 3;
@@ -200,17 +200,14 @@ window.addEventListener('load', function () {
         }
         isOriginalSky = !isOriginalSky;
 
-        // Play the sound
-        const sound = document.querySelector('#warpSound');
-        if (sound) {
-            sound.play();
-        }
+        // Play the warp effect
+        playWarpEffect();
     }
 
     function isTouching(entity1, entity2) {
         const pos1 = entity1.getAttribute('position');
         const pos2 = entity2.getAttribute('position');
-        const distance = Math.sqrt(Math.pow(pos1.x - pos2.x, 2) + Math.pow(pos2.z - pos2.z, 2));
+        const distance = Math.sqrt(Math.pow(pos1.x - pos2.x, 2) + Math.pow(pos1.z - pos2.z, 2));
         const heightDifference = Math.abs(pos1.y - pos2.y);
         return distance < 2 && heightDifference < 0.2; // Adjust based on the model's size
     }
@@ -232,15 +229,18 @@ window.addEventListener('load', function () {
         }
     }
 
-    function toggleWarpEntity() {
-        if (!warpEntity) {
-            warpEntity = document.createElement('a-entity');
-            warpEntity.setAttribute('gltf-model', '#polychromatic_warp');
-            warpEntity.setAttribute('position', '0 1.6 -3'); // Adjust the position as needed
-            warpEntity.setAttribute('visible', 'false');
-            scene.appendChild(warpEntity);
-        }
-        warpEntity.setAttribute('visible', !warpEntity.getAttribute('visible'));
+    function playWarpEffect() {
+        const camera = document.querySelector('a-camera');
+        const warpEffect = document.createElement('a-entity');
+        warpEffect.setAttribute('gltf-model', '#polychromatic_warp');
+        warpEffect.setAttribute('position', '0 0 -1'); // Adjust position to be in front of the camera
+        warpEffect.setAttribute('animation', 'property: scale; to: 1.5 1.5 1.5; dur: 2000; easing: easeInOutQuad');
+        warpEffect.setAttribute('animation__fade', 'property: opacity; to: 0; dur: 2000; easing: easeInOutQuad; delay: 1000');
+        camera.appendChild(warpEffect);
+
+        setTimeout(() => {
+            camera.removeChild(warpEffect);
+        }, 2000); // Remove effect after 2 seconds
     }
 
     function displayConfetti() {
@@ -259,7 +259,6 @@ window.addEventListener('load', function () {
     window.addEventListener('keydown', function (event) {
         if (event.code === 'KeyE') {
             changeEnvironment();
-            toggleWarpEntity();
         }
     });
 
