@@ -16,20 +16,15 @@
 </head>
 <body>
   <a-scene physics="driver: ammo; gravity: -9.8; debug: false; maxSubSteps: 20;">
-  <a-assets>
-   <a-asset-item id="steelball" src="steelball/steelball.gltf"></a-asset-item>
-  <a-asset-item id="tree" src="tree/tree.gltf"></a-asset-item>
-  <a-asset-item id="rock" src="rock/rock.gltf"></a-asset-item>
-  <a-asset-item id="polychromatic_warp" src="polychromatic_warp/scene.gltf"></a-asset-item>
-  <a-asset-item id="confetti" src="confetti/scene.gltf"></a-asset-item>
-<img id="ground" src="floor.jpg"/>
-  <img id="sky" src="sky.png"/>
-  <img id="sky2" src="sky2.jpg"/>
-</a-assets>
-
+    <a-assets>
+      <a-asset-item id="steelball" src="steelball/steelball.gltf"></a-asset-item>
+      <a-asset-item id="tree" src="tree/tree.gltf"></a-asset-item>
+      <a-asset-item id="rock" src="rock/rock.gltf"></a-asset-item>
+      <a-asset-item id="polychromatic_warp" src="polychromatic_warp/scene.gltf"></a-asset-item>
+      <a-asset-item id="confetti" src="confetti/scene.gltf"></a-asset-item>
       <img id="ground" src="floor.jpg"/>
       <img id="sky" src="sky.png"/>
-      <img id="new_sky_image" src="new_sky_image.jpg"/>
+      <img id="sky2" src="sky2.jpg"/>
     </a-assets>
     <!-- Ground (Static Body) -->
     <a-plane src="#ground" height="500" width="500" rotation="-90 0 0" static-body></a-plane>
