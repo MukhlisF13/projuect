@@ -6,7 +6,7 @@ window.addEventListener('load', function () {
     const originalSky = '#sky';
     const alternateSky = '#sky2';
 
-    let steelballEntity, platformEntity, winZoneEntity, warpEntity, confettiEntity;
+    let steelballEntity, platformEntity, winZoneEntity, confettiEntity;
     let environmentEntities = [];
     let ePressCount = 0;
     const maxEPresses = 3;
@@ -199,9 +199,6 @@ window.addEventListener('load', function () {
             sky.setAttribute('src', isOriginalSky ? alternateSky : originalSky);
         }
         isOriginalSky = !isOriginalSky;
-
-        // Play the warp effect
-        playWarpEffect();
     }
 
     function isTouching(entity1, entity2) {
@@ -227,32 +224,6 @@ window.addEventListener('load', function () {
             displayConfetti();
             resetGame();
         }
-    }
-
-    function playWarpEffect() {
-        const camera = document.querySelector('a-camera');
-        const warpEffect = document.createElement('a-entity');
-        warpEffect.setAttribute('gltf-model', '#polychromatic_warp');
-        warpEffect.setAttribute('position', '0 0 -1'); // Adjust position to be in front of the camera
-        warpEffect.setAttribute('animation', 'property: scale; to: 1.5 1.5 1.5; dur: 2000; easing: easeInOutQuad');
-        warpEffect.setAttribute('animation__fade', 'property: opacity; to: 0; dur: 2000; easing: easeInOutQuad; delay: 1000');
-        camera.appendChild(warpEffect);
-
-        // Hide all other elements
-        hideAllElements(true);
-
-        setTimeout(() => {
-            camera.removeChild(warpEffect);
-            hideAllElements(false); // Show all elements again
-        }, 2000); // Remove effect after 2 seconds
-    }
-
-    function hideAllElements(hide) {
-        const visibility = hide ? 'false' : 'true';
-        environmentEntities.forEach(entity => entity.setAttribute('visible', visibility));
-        platformEntity.setAttribute('visible', visibility);
-        winZoneEntity.setAttribute('visible', visibility);
-        steelballEntity.setAttribute('visible', visibility);
     }
 
     function displayConfetti() {
