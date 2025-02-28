@@ -236,3 +236,4 @@ window.addEventListener('load', function () {
     createInitialEntities();
     createEnvironment();
 });
+});
