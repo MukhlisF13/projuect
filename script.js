@@ -6,7 +6,7 @@ window.addEventListener('load', function () {
     const originalSky = '#sky';
     const alternateSky = '#sky2';
 
-    let steelballEntity, platformEntity, winZoneEntity, confettiEntity;
+    let steelballEntity, platformEntity, winZoneEntity, confettiEntity, winSoundEntity;
     let environmentEntities = [];
     let ePressCount = 0;
     const maxEPresses = 3;
@@ -139,6 +139,12 @@ window.addEventListener('load', function () {
         });
         steelballEntity.setAttribute('visible', 'true');
         scene.appendChild(steelballEntity);
+
+        // Create the win sound entity
+        winSoundEntity = document.createElement('audio');
+        winSoundEntity.setAttribute('id', 'winSound');
+        winSoundEntity.setAttribute('src', 'level-win-6416.mp3');
+        scene.appendChild(winSoundEntity);
     }
 
     let steelballPosition, platformPosition;
@@ -221,6 +227,7 @@ window.addEventListener('load', function () {
             Math.abs(ballPos.z - winZonePos.z) < 2 &&
             ballPos.y < 0.3) {
             displayConfetti();
+            playWinSound();
             showWinningScreen();
             resetGame();
         }
@@ -228,13 +235,19 @@ window.addEventListener('load', function () {
 
     function displayConfetti() {
         if (!confettiEntity) {
-            confettiEntity = document.createElement('a-entity');
-            confettiEntity.setAttribute('gltf-model', '#confetti');
-            confettiEntity.setAttribute('position', '0 3 -5'); // Adjust the position as needed
-            confettiEntity.setAttribute('scale', '2 2 2'); // Adjust scale if needed
-            scene.appendChild(confettiEntity);
+            confettiEntity = document.querySelector('#confetti');
         }
+        const playerPosition = document.querySelector('#player').getAttribute('position');
+        confettiEntity.setAttribute('position', playerPosition);
         confettiEntity.setAttribute('visible', true);
+        confettiEntity.setAttribute('animation-mixer', 'loop: once; clampWhenFinished: true');
+    }
+
+    function playWinSound() {
+        const winSound = document.getElementById('winSound');
+        if (winSound) {
+            winSound.play();
+        }
     }
 
     function showWinningScreen() {
@@ -254,6 +267,7 @@ window.addEventListener('load', function () {
         }
         if (event.code === 'Digit9') {
             displayConfetti();
+            playWinSound();
             showWinningScreen();
         }
     });
