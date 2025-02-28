@@ -100,7 +100,7 @@ window.addEventListener('load', function () {
         platformEntity.setAttribute('height', '0.2');
         platformEntity.setAttribute('color', 'blue');
         platformEntity.setAttribute('visible', 'false');
-        platformEntity.setAttribute('position', `${originalPosition.x} ${originalPosition.y} ${originalPosition.z}`);
+        platformEntity.setAttribute('position', `${originalPosition.x} 0 ${originalPosition.z}`);
         scene.appendChild(platformEntity);
 
         steelballEntity = document.createElement('a-entity');
@@ -142,10 +142,10 @@ window.addEventListener('load', function () {
 
         if (!steelballPosition && !platformPosition) {
             platformPosition = getSpawnPositionBehindEntity(randomTree, 4);
-            platformEntity.setAttribute('position', `${platformPosition.x} ${platformPosition.y} ${platformPosition.z}`);
+            platformEntity.setAttribute('position', `${platformPosition.x} 0 ${platformPosition.z}`);
 
             steelballPosition = getSpawnPositionBehindEntity(randomRock, 4, platformPosition);
-            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y} ${steelballPosition.z}`);
+            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y + 0.1} ${steelballPosition.z}`);
         }
     }
 
@@ -173,10 +173,10 @@ window.addEventListener('load', function () {
             const randomRock = environmentEntities[numTrees + Math.floor(Math.random() * numRocks)];
             
             platformPosition = getSpawnPositionBehindEntity(randomTree, 4);
-            platformEntity.setAttribute('position', `${platformPosition.x} ${platformPosition.y} ${platformPosition.z}`);
+            platformEntity.setAttribute('position', `${platformPosition.x} 0 ${platformPosition.z}`);
 
             steelballPosition = getSpawnPositionBehindEntity(randomRock, 4, platformPosition);
-            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y} ${steelballPosition.z}`);
+            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y + 0.1} ${steelballPosition.z}`);
         }
 
         platformEntity.setAttribute('visible', !platformEntity.getAttribute('visible'));
