@@ -6,7 +6,7 @@ window.addEventListener('load', function () {
     const originalSky = '#sky';
     const alternateSky = '#new_sky_image';
 
-    let steelballEntity, platformEntity, winZoneEntity, warpEntity;
+    let steelballEntity, platformEntity, winZoneEntity, warpEntity, confettiEntity;
     let environmentEntities = [];
     let ePressCount = 0;
     const maxEPresses = 3;
@@ -221,6 +221,7 @@ window.addEventListener('load', function () {
             Math.abs(ballPos.z - winZonePos.z) < 2 &&
             ballPos.y < 0.3) {
             alert('You win, congrats player!');
+            displayConfetti();
             resetGame();
         }
     }
@@ -234,6 +235,17 @@ window.addEventListener('load', function () {
             scene.appendChild(warpEntity);
         }
         warpEntity.setAttribute('visible', !warpEntity.getAttribute('visible'));
+    }
+
+    function displayConfetti() {
+        if (!confettiEntity) {
+            confettiEntity = document.createElement('a-entity');
+            confettiEntity.setAttribute('gltf-model', '#confetti');
+            confettiEntity.setAttribute('position', '0 3 -5'); // Adjust the position as needed
+            confettiEntity.setAttribute('scale', '2 2 2'); // Adjust scale if needed
+            scene.appendChild(confettiEntity);
+        }
+        confettiEntity.setAttribute('visible', true);
     }
 
     setInterval(checkWinCondition, 500);
