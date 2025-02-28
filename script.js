@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
     let environmentEntities = [];
     let ePressCount = 0;
     const maxEPresses = 3;
-    let originalPosition = { x: 0, y: 0.8, z: 0 }; // Adjusted height to 0.8
+    let originalPosition = { x: 0, y: 0.8, z: 0 };
 
     function createEnvironmentEntity(model, scale, position, id) {
         return new Promise((resolve) => {
@@ -212,7 +212,7 @@ window.addEventListener('load', function () {
         const pos2 = entity2.getAttribute('position');
         const distance = Math.sqrt(Math.pow(pos1.x - pos2.x, 2) + Math.pow(pos1.z - pos2.z, 2));
         const heightDifference = Math.abs(pos1.y - pos2.y);
-        return distance < 2 && heightDifference < 0.2; // Adjust based on the model's size
+        return distance < 2 && heightDifference < 0.2;
     }
 
     function checkWinCondition() {
