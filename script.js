@@ -145,7 +145,7 @@ window.addEventListener('load', function () {
             platformEntity.setAttribute('position', `${platformPosition.x} 0 ${platformPosition.z}`);
 
             steelballPosition = getSpawnPositionBehindEntity(randomRock, 4, platformPosition);
-            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y + 0.1} ${steelballPosition.z}`);
+            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y} ${steelballPosition.z}`);
         }
     }
 
@@ -176,7 +176,7 @@ window.addEventListener('load', function () {
             platformEntity.setAttribute('position', `${platformPosition.x} 0 ${platformPosition.z}`);
 
             steelballPosition = getSpawnPositionBehindEntity(randomRock, 4, platformPosition);
-            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y + 0.1} ${steelballPosition.z}`);
+            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y} ${steelballPosition.z}`);
         }
 
         platformEntity.setAttribute('visible', !platformEntity.getAttribute('visible'));
