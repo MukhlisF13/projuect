@@ -176,7 +176,7 @@ window.addEventListener('load', function () {
             platformEntity.setAttribute('position', `${platformPosition.x} 0 ${platformPosition.z}`);
 
             steelballPosition = getSpawnPositionBehindEntity(randomRock, 4, platformPosition);
-            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y + 2} ${steelballPosition.z}`); // Updated height to 2
+            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y + 4} ${steelballPosition.z}`); // Updated height to 2
         }
 
         platformEntity.setAttribute('visible', !platformEntity.getAttribute('visible'));
