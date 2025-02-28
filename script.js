@@ -191,6 +191,7 @@ window.addEventListener('load', function () {
         }
 
         platformEntity.setAttribute('visible', !platformEntity.getAttribute('visible'));
+        winZoneEntity.setAttribute('visible', platformEntity.getAttribute('visible') === 'false');
         steelballEntity.setAttribute('visible', !steelballEntity.getAttribute('visible'));
 
         const sky = document.querySelector('a-sky');
@@ -211,7 +212,7 @@ window.addEventListener('load', function () {
     function checkWinCondition() {
         if (!steelballEntity || !platformEntity || !winZoneEntity) return;
 
-        if (!steelballEntity.getAttribute('visible') || !platformEntity.getAttribute('visible') || !winZoneEntity.getAttribute('visible')) return;
+        if (!steelballEntity.getAttribute('visible') || !platformEntity.getAttribute('visible') || winZoneEntity.getAttribute('visible') === 'false') return;
 
         if (isTouching(steelballEntity, winZoneEntity)) {
             setTimeout(() => {
