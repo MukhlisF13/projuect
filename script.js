@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
     let environmentEntities = [];
     let ePressCount = 0;
     const maxEPresses = 3;
-    let originalPosition = { x: 0, y: .2, z: 0 }; // Original height set to 2
+    let originalPosition = { x: 0, y: 0.2, z: 0 }; // Adjusted height to 0.2
 
     function createEnvironmentEntity(model, scale, position, id) {
         return new Promise((resolve) => {
@@ -52,15 +52,15 @@ window.addEventListener('load', function () {
         for (const entity of entities) {
             const entityPos = entity.getAttribute('position');
             const distance = Math.sqrt(
-                Math.pow(position.x - entityPos.x, 2) + 
+                Math.pow(position.x - entityPos.x, 2) +
                 Math.pow(position.z - entityPos.z, 2)
             );
             if (distance < minDistance) return false;
         }
-        
+
         if (otherPosition) {
             const distanceToOther = Math.sqrt(
-                Math.pow(position.x - otherPosition.x, 2) + 
+                Math.pow(position.x - otherPosition.x, 2) +
                 Math.pow(position.z - otherPosition.z, 2)
             );
             if (distanceToOther < 20) return false;
@@ -71,7 +71,7 @@ window.addEventListener('load', function () {
     function getSpawnPositionBehindEntity(entity, offset, otherPosition = null) {
         const entityPos = entity.getAttribute('position');
         const rotation = Math.random() * Math.PI * 2;
-        
+
         for (let attempt = 0; attempt < 16; attempt++) {
             const angle = rotation + (attempt * Math.PI / 8);
             const distance = offset + (Math.random() * 2);
@@ -80,12 +80,12 @@ window.addEventListener('load', function () {
                 y: 0,
                 z: entityPos.z + Math.sin(angle) * distance
             };
-            
+
             if (isPositionValid(position, environmentEntities, 3, otherPosition)) {
                 return position;
             }
         }
-        
+
         return {
             x: entityPos.x + offset + (Math.random() * 10),
             y: 0,
@@ -107,12 +107,12 @@ window.addEventListener('load', function () {
         steelballEntity.setAttribute('gltf-model', '#steelball');
         steelballEntity.setAttribute('position', `${originalPosition.x} ${originalPosition.y} ${originalPosition.z}`);
         const moveSpeed = 0.8;
-        
+
         window.addEventListener('keydown', (e) => {
             if (!steelballEntity.getAttribute('visible')) return;
-            
+
             const position = steelballEntity.getAttribute('position');
-            switch(e.code) {
+            switch (e.code) {
                 case 'ArrowUp':
                     position.z -= moveSpeed;
                     break;
@@ -145,7 +145,7 @@ window.addEventListener('load', function () {
             platformEntity.setAttribute('position', `${platformPosition.x} 0 ${platformPosition.z}`);
 
             steelballPosition = getSpawnPositionBehindEntity(randomRock, 4, platformPosition);
-            steelballEntity.setAttribute('position', `${steelballPosition.x} ${originalPosition.y} ${steelballPosition.z}`); // Set to original height
+            steelballEntity.setAttribute('position', `${steelballPosition.x} ${originalPosition.y} ${steelballPosition.z}`); // Set to adjusted height
         }
     }
 
@@ -171,12 +171,12 @@ window.addEventListener('load', function () {
             ePressCount = 0;
             const randomTree = environmentEntities[Math.floor(Math.random() * numTrees)];
             const randomRock = environmentEntities[numTrees + Math.floor(Math.random() * numRocks)];
-            
+
             platformPosition = getSpawnPositionBehindEntity(randomTree, 4);
             platformEntity.setAttribute('position', `${platformPosition.x} 0 ${platformPosition.z}`);
 
             steelballPosition = getSpawnPositionBehindEntity(randomRock, 4, platformPosition);
-            steelballEntity.setAttribute('position', `${steelballPosition.x} ${originalPosition.y} ${steelballPosition.z}`); // Set to original height
+            steelballEntity.setAttribute('position', `${steelballPosition.x} ${originalPosition.y} ${steelballPosition.z}`); // Set to adjusted height
         }
 
         platformEntity.setAttribute('visible', !platformEntity.getAttribute('visible'));
