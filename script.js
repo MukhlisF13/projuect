@@ -3,6 +3,11 @@ window.addEventListener('load', function () {
     const numTrees = 10;
     const numRocks = 10;
     let isOriginalSky = true;
+window.addEventListener('load', function () {
+    const scene = document.querySelector('a-scene');
+    const numTrees = 10;
+    const numRocks = 10;
+    let isOriginalSky = true;
     const originalSky = '#sky';
     const alternateSky = '#sky2';
 
