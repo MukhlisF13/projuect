@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plane Shifter</title>
-  <!-- A-Frame & Built-in Physics System -->
   <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe-physics-system@master/dist/aframe-physics-system.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
@@ -28,20 +27,15 @@
       <img id="sky2" src="sky2.jpg"/>
       <img id="winningScreen" src="Untitled.png"/>
     </a-assets>
-    <!-- Ground (Static Body) -->
     <a-plane src="#ground" height="500" width="500" rotation="-90 0 0" static-body></a-plane>
-    <!-- Lighting -->
     <a-light type="directional" position="1 3 1" intensity="1"></a-light>
     <a-light type="ambient" color="#BBB"></a-light>
-    <!-- Sky -->
     <a-sky src="#sky"></a-sky>
-    <!-- Player rig with WASD movement -->
     <a-entity id="player" position="0 1.6 0">
       <a-camera wasd-controls-enabled="true" look-controls-enabled="true" keyboard-controls="enabled: false">
         <a-cursor></a-cursor>
       </a-camera>
     </a-entity>
-    <!-- Confetti Entity -->
     <a-entity id="confetti" gltf-model="#confetti" animation-mixer="loop: once" visible="false"></a-entity>
   </a-scene>
 </body>
