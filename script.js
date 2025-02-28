@@ -3,11 +3,6 @@ window.addEventListener('load', function () {
     const numTrees = 10;
     const numRocks = 10;
     let isOriginalSky = true;
-window.addEventListener('load', function () {
-    const scene = document.querySelector('a-scene');
-    const numTrees = 10;
-    const numRocks = 10;
-    let isOriginalSky = true;
     const originalSky = '#sky';
     const alternateSky = '#sky2';
 
@@ -225,8 +220,8 @@ window.addEventListener('load', function () {
         if (Math.abs(ballPos.x - winZonePos.x) < 2 &&
             Math.abs(ballPos.z - winZonePos.z) < 2 &&
             ballPos.y < 0.3) {
-            alert('You win, congrats player!');
             displayConfetti();
+            showWinningScreen();
             resetGame();
         }
     }
@@ -242,11 +237,24 @@ window.addEventListener('load', function () {
         confettiEntity.setAttribute('visible', true);
     }
 
+    function showWinningScreen() {
+        setTimeout(() => {
+            const winningScreen = document.createElement('img');
+            winningScreen.setAttribute('src', 'Untitled.png');
+            winningScreen.setAttribute('style', 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000;');
+            document.body.appendChild(winningScreen);
+        }, 5000);
+    }
+
     setInterval(checkWinCondition, 500);
 
     window.addEventListener('keydown', function (event) {
         if (event.code === 'KeyE') {
             changeEnvironment();
+        }
+        if (event.code === 'Digit9') {
+            displayConfetti();
+            showWinningScreen();
         }
     });
 
