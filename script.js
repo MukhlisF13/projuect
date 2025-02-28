@@ -238,9 +238,21 @@ window.addEventListener('load', function () {
         warpEffect.setAttribute('animation__fade', 'property: opacity; to: 0; dur: 2000; easing: easeInOutQuad; delay: 1000');
         camera.appendChild(warpEffect);
 
+        // Hide all other elements
+        hideAllElements(true);
+
         setTimeout(() => {
             camera.removeChild(warpEffect);
+            hideAllElements(false); // Show all elements again
         }, 2000); // Remove effect after 2 seconds
+    }
+
+    function hideAllElements(hide) {
+        const visibility = hide ? 'false' : 'true';
+        environmentEntities.forEach(entity => entity.setAttribute('visible', visibility));
+        platformEntity.setAttribute('visible', visibility);
+        winZoneEntity.setAttribute('visible', visibility);
+        steelballEntity.setAttribute('visible', visibility);
     }
 
     function displayConfetti() {
