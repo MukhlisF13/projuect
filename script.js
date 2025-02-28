@@ -77,7 +77,7 @@ window.addEventListener('load', function () {
             const distance = offset + (Math.random() * 2);
             const position = {
                 x: entityPos.x + Math.cos(angle) * distance,
-                y: 1.0,
+                y: 0.1,
                 z: entityPos.z + Math.sin(angle) * distance
             };
             
@@ -88,7 +88,7 @@ window.addEventListener('load', function () {
         
         return {
             x: entityPos.x + offset + (Math.random() * 10),
-            y: 1.0,
+            y: 0.1,
             z: entityPos.z + offset + (Math.random() * 10)
         };
     }
@@ -100,6 +100,7 @@ window.addEventListener('load', function () {
         platformEntity.setAttribute('height', '0.2');
         platformEntity.setAttribute('color', 'blue');
         platformEntity.setAttribute('visible', 'false');
+        platformEntity.setAttribute('position', `${originalPosition.x} ${originalPosition.y} ${originalPosition.z}`);
         scene.appendChild(platformEntity);
 
         steelballEntity = document.createElement('a-entity');
@@ -141,10 +142,10 @@ window.addEventListener('load', function () {
 
         if (!steelballPosition && !platformPosition) {
             platformPosition = getSpawnPositionBehindEntity(randomTree, 4);
-            platformEntity.setAttribute('position', `${platformPosition.x} ${platformPosition.y + 0.1} ${platformPosition.z}`);
+            platformEntity.setAttribute('position', `${platformPosition.x} ${platformPosition.y} ${platformPosition.z}`);
 
             steelballPosition = getSpawnPositionBehindEntity(randomRock, 4, platformPosition);
-            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y + 0.1} ${steelballPosition.z}`);
+            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y} ${steelballPosition.z}`);
         }
     }
 
@@ -172,10 +173,10 @@ window.addEventListener('load', function () {
             const randomRock = environmentEntities[numTrees + Math.floor(Math.random() * numRocks)];
             
             platformPosition = getSpawnPositionBehindEntity(randomTree, 4);
-            platformEntity.setAttribute('position', `${platformPosition.x} ${platformPosition.y + 0.1} ${platformPosition.z}`);
+            platformEntity.setAttribute('position', `${platformPosition.x} ${platformPosition.y} ${platformPosition.z}`);
 
             steelballPosition = getSpawnPositionBehindEntity(randomRock, 4, platformPosition);
-            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y + 0.1} ${steelballPosition.z}`);
+            steelballEntity.setAttribute('position', `${steelballPosition.x} ${steelballPosition.y} ${steelballPosition.z}`);
         }
 
         platformEntity.setAttribute('visible', !platformEntity.getAttribute('visible'));
