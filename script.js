@@ -15,10 +15,10 @@ window.addEventListener('load', function () {
     function createEnvironmentEntity(model, scale, position, id) {
         return new Promise((resolve) => {
             const entity = document.createElement('a-entity');
-            entity.setAttribute('position', `${position.x} ${position.y} ${position.z}`);
+            entity.setAttribute('position', ${position.x} ${position.y} ${position.z});
             entity.setAttribute('gltf-model', model);
             entity.setAttribute('scale', scale);
-            entity.setAttribute('rotation', `0 ${Math.random() * 360} 0`);
+            entity.setAttribute('rotation', 0 ${Math.random() * 360} 0);
             entity.setAttribute('id', id);
             scene.appendChild(entity);
             entity.addEventListener('loaded', () => resolve(entity));
@@ -100,7 +100,7 @@ window.addEventListener('load', function () {
         platformEntity.setAttribute('height', '0.2');
         platformEntity.setAttribute('color', 'blue');
         platformEntity.setAttribute('visible', 'false');
-        platformEntity.setAttribute('position', `${originalPosition.x} 0 ${originalPosition.z}`);
+        platformEntity.setAttribute('position', ${originalPosition.x} 0 ${originalPosition.z});
         scene.appendChild(platformEntity);
 
         // Create the invisible win zone
@@ -108,13 +108,13 @@ window.addEventListener('load', function () {
         winZoneEntity.setAttribute('width', '4');
         winZoneEntity.setAttribute('depth', '4');
         winZoneEntity.setAttribute('height', '0.2');
-        winZoneEntity.setAttribute('position', `${originalPosition.x} 0.1 ${originalPosition.z}`);
+        winZoneEntity.setAttribute('position', ${originalPosition.x} 0.1 ${originalPosition.z});
         winZoneEntity.setAttribute('visible', 'false'); // Invisible
         scene.appendChild(winZoneEntity);
 
         steelballEntity = document.createElement('a-entity');
         steelballEntity.setAttribute('gltf-model', '#steelball');
-        steelballEntity.setAttribute('position', `${originalPosition.x} ${originalPosition.y} ${originalPosition.z}`);
+        steelballEntity.setAttribute('position', ${originalPosition.x} ${originalPosition.y} ${originalPosition.z});
         const moveSpeed = 0.8;
 
         window.addEventListener('keydown', (e) => {
@@ -151,11 +151,11 @@ window.addEventListener('load', function () {
 
         if (!steelballPosition && !platformPosition) {
             platformPosition = getSpawnPositionBehindEntity(randomTree, 4);
-            platformEntity.setAttribute('position', `${platformPosition.x} 0 ${platformPosition.z}`);
-            winZoneEntity.setAttribute('position', `${platformPosition.x} 0.1 ${platformPosition.z}`);
+            platformEntity.setAttribute('position', ${platformPosition.x} 0 ${platformPosition.z});
+            winZoneEntity.setAttribute('position', ${platformPosition.x} 0.1 ${platformPosition.z});
 
             steelballPosition = getSpawnPositionBehindEntity(randomRock, 4, platformPosition);
-            steelballEntity.setAttribute('position', `${steelballPosition.x} ${originalPosition.y} ${steelballPosition.z}`); // Set to adjusted height
+            steelballEntity.setAttribute('position', ${steelballPosition.x} ${originalPosition.y} ${steelballPosition.z}); // Set to adjusted height
         }
     }
 
@@ -171,7 +171,7 @@ window.addEventListener('load', function () {
     }
 
     function resetBallPosition() {
-        steelballEntity.setAttribute('position', `${originalPosition.x} ${originalPosition.y} ${originalPosition.z}`);
+        steelballEntity.setAttribute('position', ${originalPosition.x} ${originalPosition.y} ${originalPosition.z});
     }
 
     function changeEnvironment() {
@@ -183,11 +183,11 @@ window.addEventListener('load', function () {
             const randomRock = environmentEntities[numTrees + Math.floor(Math.random() * numRocks)];
 
             platformPosition = getSpawnPositionBehindEntity(randomTree, 4);
-            platformEntity.setAttribute('position', `${platformPosition.x} 0 ${platformPosition.z}`);
-            winZoneEntity.setAttribute('position', `${platformPosition.x} 0.1 ${platformPosition.z}`);
+            platformEntity.setAttribute('position', ${platformPosition.x} 0 ${platformPosition.z});
+            winZoneEntity.setAttribute('position', ${platformPosition.x} 0.1 ${platformPosition.z});
 
             steelballPosition = getSpawnPositionBehindEntity(randomRock, 4, platformPosition);
-            steelballEntity.setAttribute('position', `${steelballPosition.x} ${originalPosition.y} ${steelballPosition.z}`); // Set to adjusted height
+            steelballEntity.setAttribute('position', ${steelballPosition.x} ${originalPosition.y} ${steelballPosition.z}); // Set to adjusted height
         }
 
         platformEntity.setAttribute('visible', !platformEntity.getAttribute('visible'));
@@ -212,27 +212,4 @@ window.addEventListener('load', function () {
     function checkWinCondition() {
         if (!steelballEntity || !platformEntity || !winZoneEntity) return;
 
-        if (!steelballEntity.getAttribute('visible') || platformEntity.getAttribute('visible') || !winZoneEntity.getAttribute('visible')) return;
-
-        if (isTouching(steelballEntity, winZoneEntity)) {
-            setTimeout(() => {
-                alert('You win, congrats player!');
-                resetGame();
-            }, 100);
-        }
-    }
-
-    setInterval(() => {
-        checkWinCondition();
-    }, 100);
-
-    window.addEventListener('keydown', function (event) {
-        if (event.code === 'KeyE') {
-            changeEnvironment();
-            checkWinCondition();
-        }
-    });
-
-    createInitialEntities();
-    createEnvironment();
-});
+        if (!steelballEntity.
