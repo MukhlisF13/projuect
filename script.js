@@ -4,7 +4,7 @@ window.addEventListener('load', function () {
     const numRocks = 10;
     let isOriginalSky = true;
     const originalSky = '#sky';
-    const alternateSky = '#new_sky_image';
+    const alternateSky = '#sky2';
 
     let steelballEntity, platformEntity, winZoneEntity, warpEntity, confettiEntity;
     let environmentEntities = [];
