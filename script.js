@@ -103,13 +103,13 @@ window.addEventListener('load', function () {
         platformEntity.setAttribute('position', `${originalPosition.x} 0 ${originalPosition.z}`);
         scene.appendChild(platformEntity);
 
-        // Create the invisible win zone
+       
         winZoneEntity = document.createElement('a-box');
         winZoneEntity.setAttribute('width', '4');
         winZoneEntity.setAttribute('depth', '4');
         winZoneEntity.setAttribute('height', '0.2');
         winZoneEntity.setAttribute('position', `${originalPosition.x} 0.1 ${originalPosition.z}`);
-        winZoneEntity.setAttribute('visible', 'false'); // Invisible
+        winZoneEntity.setAttribute('visible', 'false'); 
         scene.appendChild(winZoneEntity);
 
         steelballEntity = document.createElement('a-entity');
@@ -140,7 +140,7 @@ window.addEventListener('load', function () {
         steelballEntity.setAttribute('visible', 'true');
         scene.appendChild(steelballEntity);
 
-        // Create the win sound entity
+        
         winSoundEntity = document.createElement('audio');
         winSoundEntity.setAttribute('id', 'winSound');
         winSoundEntity.setAttribute('src', 'level-win-6416.mp3');
